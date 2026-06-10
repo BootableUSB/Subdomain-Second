@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Installation Service | Australia</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html, body {
+            background-color: #ffffff;
+            color: #000000;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Snap Scrolling Container */
+        .scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Fullscreen Section Baseline */
+        .section {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid #000000; 
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            justify-content: space-between;
+            padding: 10vh 5vw 8vh 5vw;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 14vw;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 1.2;
+            white-space: nowrap;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        /* MASSIVE BUTTONS */
+        .uiverse-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1vw;
+            position: relative;
+            z-index: 10;
+            font-size: 2vw; 
+            font-weight: 700;
+            padding: 1.5vw 4vw;
+            color: #000000;
+            background-color: #f9fafb;
+            border: 0.3vw solid #000000;
+            border-radius: 9999px;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: color 0.4s ease;
+            isolation: isolate;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .uiverse-btn::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-color: #000000;
+            transform: translateY(-50%) scale(1);
+            transition: left 0.5s ease, transform 0.5s ease;
+            z-index: -10;
+        }
+
+        .uiverse-btn:hover::before {
+            left: 0;
+            transform: translateY(-50%) scale(2.5);
+        }
+
+        .uiverse-btn:hover {
+            color: #f9fafb;
+        }
+
+        .uiverse-btn svg {
+            width: 2vw;
+            height: 2vw;
+            transition: transform 0.3s ease;
+        }
+
+        .uiverse-btn svg path {
+            fill: #1f2937;
+            transition: fill 0.4s ease;
+        }
+
+        .uiverse-btn:hover svg path {
+            fill: #f9fafb;
+        }
+
+        /* --- CONTROL PANEL BUTTONS --- */
+        .bottom-btn-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            height: 12vw; 
+        }
+
+        /* --- SLIDER MODULE --- */
+        .split-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 0 0 0;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .squares-viewport {
+            width: 100%;
+            overflow: hidden;
+            height: calc(100% - 12vw);
+            cursor: grab;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .squares-viewport:active {
+            cursor: grabbing;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            width: 300%; 
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .slide-pair {
+            width: 33.333%;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%;
+        }
+
+        .panel-box {
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 50px;
+            text-align: left;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Visual indicator that the square is interactive/clickable */
+        .panel-box:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .panel-box h2 {
+            font-size: 3.2vw;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 5px;
+            line-height: 1.1;
+            width: 100%;
+        }
+
+        /* New Content Design Elements */
+        .panel-tagline {
+            font-size: 1.3vw;
+            font-weight: 600;
+            color: #a855f7; /* Vibrant purple accent for modern look */
+            margin-bottom: 25px;
+            letter-spacing: -0.01em;
+        }
+
+        .panel-box p {
+            font-size: 1.1vw;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #9ca3af;
+        }
+
+        /* Features Grid inside the Box */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            width: 100%;
+            margin-top: auto; /* Pushes content down elegantly */
+            border-top: 1px solid #222222;
+            padding-top: 25px;
+        }
+
+        .info-item h3 {
+            font-size: 1.1vw;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item h3::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #a855f7;
+            border-radius: 50%;
+        }
+
+        .info-item p {
+            font-size: 0.95vw;
+            line-height: 1.5;
+            color: #9ca3af;
+            margin-bottom: 0;
+        }
+
+        /* --- CONTACT FORM --- */
+        .form-section {
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 40px;
+        }
+
+        .form-container {
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 40px;
+            padding: 50px;
+            width: 100%;
+            max-width: 900px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .form-container h2 {
+            font-size: 3.5vw;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: #111111;
+            border: 0.2vw solid #333333;
+            border-radius: 16px;
+            padding: 16px 20px;
+            color: #ffffff;
+            font-size: 1.2vw;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #ffffff;
+        }
+
+        .form-control.no-stepper::-webkit-outer-spin-button,
+        .form-control.no-stepper::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .form-control.no-stepper {
+            appearance: textfield;
+            -moz-appearance: textfield;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white'><path d='M8 11l-5-5h10z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            padding-right: 45px;
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            height: 12.5vw;
+            resize: none;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 1.4vw;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .form-submit-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* --- RESPONSIVE SETTINGS --- */
+        @media (max-width: 768px) {
+            .scroll-container {
+                scroll-snap-type: none;
+            }
+            .section {
+                height: auto;
+                min-height: 100vh;
+            }
+            .hero {
+                height: 100vh;
+                padding: 15vh 5vw 6vh 5vw;
+            }
+            h1 {
+                font-size: 16vw;
+            }
+            .uiverse-btn {
+                font-size: 5vw;
+                padding: 4vw 8vw;
+                border-width: 0.5vw;
+                width: auto;
+            }
+            .uiverse-btn svg {
+                width: 5vw;
+                height: 5vw;
+            }
+            .split-section {
+                padding: 40px 0 0 0;
+                height: auto;
+            }
+            .squares-viewport {
+                height: auto;
+                overflow: visible;
+            }
+            .slider-wrapper {
+                width: 100%;
+                flex-direction: column;
+                transform: none !important;
+            }
+            .slide-pair {
+                width: 100%;
+                grid-template-columns: 1fr;
+                gap: 30px;
+                height: auto;
+                padding: 0 20px;
+                margin-bottom: 30px;
+            }
+            .panel-box {
+                height: auto;
+                padding: 40px 30px;
+                border-radius: 24px;
+            }
+            .panel-tagline {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding-top: 20px;
+            }
+            .info-item h3 {
+                font-size: 18px;
+            }
+            .info-item p {
+                font-size: 15px;
+            }
+            .panel-box h2, .form-container h2 {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+            .panel-box p, .form-control, .form-submit-btn {
+                font-size: 16px;
+            }
+            textarea.form-control {
+                height: 180px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-bottom: 0;
+            }
+            .form-row .form-group {
+                margin-bottom: 15px;
+            }
+            .bottom-btn-wrapper {
+                display: none;
+            }
+            .form-section {
+                padding: 20px;
+                height: auto;
+            }
+            .form-container {
+                padding: 40px 20px;
+                border-radius: 24px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-container">
+        
+        <section class="section hero">
+            <h1>Any Computer.<br>Any Distro.</h1>
+
+            <button onclick="document.getElementById('content-destination').scrollIntoView({ behavior: 'smooth' });" class="uiverse-btn" style="margin-top: auto;">
+                Explore
+                <svg viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+                    <path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"></path>
+                </svg>
+            </button>
+        </section>
+
+        <section id="content-destination" class="section split-section">
+            
+            <div class="squares-viewport" id="squares-viewport">
+                <div id="slider-wrapper" class="slider-wrapper">
+                    
+                    <div class="slide-pair">
+                        <div class="panel-box">
+                            <h2>Personal Laptops</h2>
+                            <div class="panel-tagline">Premium OS Conversions & Optimizations</div>
+                            <p>Breathe brand new lifecycle value directly into your daily personal hardware layout. We replace resource-heavy operating systems with lightweight, secure Linux structures calibrated flawlessly to matching your workflow configurations.</p>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>Dual Booting</h3>
+                                    <p>Full support setups for secure native dual-boot partitions.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Driver Tuning</h3>
+                                    <p>Complete driver optimization blueprints for complex hardware components.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Custom Pipelines</h3>
+                                    <p>Tailored configurations matching modern software development trends.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Privacy Hardened</h3>
+                                    <p>Eliminate corporate telemetry tracking at the kernel layer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-box">
+                            <h2>Corporate Fleets</h2>
+                            <div class="panel-tagline">Mass Scale Bare-Metal Imaging</div>
+                            <p>Orchestrate scalable enterprise systems across your whole organizational layout without dealing with software subscription walls. Our mass bare-metal imaging protocols quickly deploy locked-down desktop architectures built precisely around unique employee group requirements.</p>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>Unified Rollouts</h3>
+                                    <p>Mass deployment image automation setups for unified device rollouts.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Central Controls</h3>
+                                    <p>Centralized administration scripts for instant configuration updates.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Ironclad Policies</h3>
+                                    <p>Hardened corporate firewall policies paired with strict disk data protection.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Zero Overhead</h3>
+                                    <p>Ditch mandatory licensing cycles completely and save resource capitals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-pair">
+                        <div class="panel-box">
+                            <h2>Server Deployments</h2>
+                            <div class="panel-tagline">Headless Core Infrastructure Setups</div>
+                            <p>Build unshakeable backend infrastructure utilizing the exact same open-source tools powering the world's largest supercomputers. We structure hardened, headless server environments optimized for maximum resource allocation and continuous uptime.</p>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>Local Hosting</h3>
+                                    <p>Bare-metal server configurations for dedicated local hosting structures.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Virtualization</h3>
+                                    <p>Docker and Kubernetes virtualization setups built out for microservices.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>RAID Storage</h3>
+                                    <p>Advanced RAID array implementations ensuring reliable data redundancy cascades.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Uptime Metrics</h3>
+                                    <p>Configure automated load balancing grids for peak traffic safety.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-box">
+                            <h2>Ongoing Maintenance</h2>
+                            <div class="panel-tagline">Continuous Protection & Security Patching</div>
+                            <p>Ensure your Linux environments remain cutting-edge and perfectly secure long after the initial deployment phase. We offer dedicated retention programs designed to keep your systems patched, clean, and functioning at peak efficiency.</p>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>Kernel Updates</h3>
+                                    <p>Automated security patching and kernel update tracking scheduling protocols.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Thermal Audits</h3>
+                                    <p>Routine hardware health checks and continuous thermal monitoring.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Cloud Backups</h3>
+                                    <p>Encrypted cloud backup synchronization and data recovery validation tests.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Log Analytics</h3>
+                                    <p>Proactive error monitoring and hardware diagnostic evaluations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-pair">
+                        <div class="panel-box">
+                            <h2>Cloud Integrations</h2>
+                            <div class="panel-tagline">Hybrid Computing Synchronization Loops</div>
+                            <p>Bridge your local operating arrays directly into highly scaled hybrid cloud systems securely. We manage provisioning pipelines designed around continuous synchronization loops, giving teams frictionless global access vectors.</p>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>Identity Access</h3>
+                                    <p>Identity access blueprints utilizing secure encrypted access tokens.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Scaling Grids</h3>
+                                    <p>Automated storage volume adjustments responding to live usage spikes.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Container Shifts</h3>
+                                    <p>Symmetric container migration setups across active server arrays.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Global Access</h3>
+                                    <p>Low-latency sync configurations built for worldwide operational teams.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-box">
+                            <h2>Custom Kernel Tuning</h2>
+                            <div class="panel-tagline">Low Latency Process Compilations</div>
+                            <p>Strip unnecessary background processing subroutines directly out of your runtime environment. We compile tailored execution kernels built exclusively around your hardware properties for low latency computing limits.</p>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>Bloat Removal</h3>
+                                    <p>Elimination of bloatware frameworks to free active RAM hardware modules.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Priority Routing</h3>
+                                    <p>Custom instruction schedules prioritizing production workflow execution threads.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Real-Time Modules</h3>
+                                    <p>Advanced real-time scheduling modules engineered for multimedia production.</p>
+                                </div>
+                                <div class="info-item">
+                                    <h3>Thermal Scaling</h3>
+                                    <p>Customized power Governor adjustments matching local cooling caps.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="static-controls" class="bottom-btn-wrapper"></div>
+        </section>
+
+        <section id="contact-destination" class="section form-section">
+            <div class="form-container">
+                <h2>Get a Free Quote</h2>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message received!');">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email Address" aria-label="Email Address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control no-stepper" placeholder="Postcode" aria-label="Postcode" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select class="form-control" aria-label="Deployment Type" required>
+                                <option value="" disabled selected hidden>Deployment Type...</option>
+                                <option value="personal">Personal Device Setup</option>
+                                <option value="corporate">Corporate Fleet Deployment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control no-stepper" min="1" placeholder="Estimated Device Count" aria-label="Estimated Device Count" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Project Details / Hardware Requirements" aria-label="Project Details" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sliderWrapper = document.getElementById('slider-wrapper');
+        const controlsContainer = document.getElementById('static-controls');
+        const viewport = document.getElementById('squares-viewport');
+        const contentSection = document.getElementById('content-destination');
+        
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        const arrowSvgLeft = `<svg viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(-90deg); margin: 0;"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"></path></svg>`;
+        const arrowSvgRight = `<svg viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg); margin: 0;"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"></path></svg>`;
+
+        function updateButtons(slideIndex) {
+            if (slideIndex === 0) {
+                controlsContainer.innerHTML = `
+                    <button onclick="changeSlide(1)" class="uiverse-btn" aria-label="Next Slide">${arrowSvgRight}</button>
+                `;
+            } else if (slideIndex === 1) {
+                controlsContainer.innerHTML = `
+                    <button onclick="changeSlide(0)" class="uiverse-btn" aria-label="Previous Slide">${arrowSvgLeft}</button>
+                    <button onclick="changeSlide(2)" class="uiverse-btn" aria-label="Next Slide">${arrowSvgRight}</button>
+                `;
+            } else if (slideIndex === 2) {
+                controlsContainer.innerHTML = `
+                    <button onclick="changeSlide(1)" class="uiverse-btn" aria-label="Previous Slide">${arrowSvgLeft}</button>
+                    <button onclick="document.getElementById('contact-destination').scrollIntoView({ behavior: 'smooth' });" class="uiverse-btn">
+                        Contact Us
+                    </button>
+                `;
+            }
+        }
+
+        function changeSlide(index) {
+            if (window.innerWidth <= 768) return; 
+            if (index < 0) index = 0;
+            if (index >= totalSlides) index = totalSlides - 1;
+            currentSlide = index;
+            const translationValue = -(currentSlide * 33.3333);
+            sliderWrapper.style.transition = 'transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)';
+            sliderWrapper.style.transform = `translateX(${translationValue}%)`;
+            updateButtons(currentSlide);
+        }
+
+        function resetToStartFast() {
+            currentSlide = 0;
+            sliderWrapper.style.transition = 'transform 0.15s cubic-bezier(0.25, 1, 0.5, 1)'; 
+            sliderWrapper.style.transform = 'translateX(0%)';
+            updateButtons(0);
+        }
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting && currentSlide !== 0) {
+                    resetToStartFast();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        scrollObserver.observe(contentSection);
+
+        let isDragging = false;
+        let startX = 0;
+        let startTransformPercent = 0;
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        document.querySelectorAll('.panel-box').forEach(box => {
+            box.addEventListener('mousedown', (e) => e.stopPropagation());
+            box.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+        });
+
+        function startDrag(event) {
+            if (window.innerWidth <= 768) return;
+            if (event.target.closest('.panel-box') || event.target.closest('button')) return;
+            
+            isDragging = true;
+            startX = getPositionX(event);
+            startTransformPercent = -(currentSlide * 33.3333);
+            sliderWrapper.style.transition = 'none';
+        }
+
+        function drag(event) {
+            if (!isDragging) return;
+            const currentX = getPositionX(event);
+            const deltaX = currentX - startX;
+            
+            const deltaPercent = (deltaX / viewport.clientWidth) * 33.3333;
+            let targetPercent = startTransformPercent + deltaPercent;
+
+            if (targetPercent > 0) targetPercent *= 0.3;
+            if (targetPercent < -66.6666) {
+                const overbound = targetPercent + 66.6666;
+                targetPercent = -66.6666 + (overbound * 0.3);
+            }
+
+            sliderWrapper.style.transform = `translateX(${targetPercent}%)`;
+        }
+
+        function endDrag(event) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const endX = event.type.includes('mouse') ? event.pageX : event.changedTouches[0].clientX;
+            const movedBy = endX - startX;
+
+            if (movedBy < -100 && currentSlide < totalSlides - 1) {
+                currentSlide++;
+            } else if (movedBy > 100 && currentSlide > 0) {
+                currentSlide--;
+            }
+
+            changeSlide(currentSlide);
+        }
+
+        viewport.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('mouseup', endDrag);
+        
+        viewport.addEventListener('touchstart', startDrag, { passive: true });
+        viewport.addEventListener('touchmove', drag, { passive: true });
+        viewport.addEventListener('touchend', endDrag);
+
+        updateButtons(0);
+    </script>
+</body>
+</html>
+
+```
