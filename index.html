@@ -714,47 +714,50 @@
         <section id="contact-destination" class="section form-section">
             <div class="form-container">
                <h2>Get a Free <span class="purple">Quote</span></h2>
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message received!');">
+               <form action="https://formsubmit.co/usbforsale@proton.me" method="POST">
+               <input type="hidden" name="_subject" value="New Linux Installation Quote">
+			   <input type="hidden" name="_captcha" value="false">
+			   <input type="hidden" name="_next" value="https://demo.aberia.site">
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" required>
+                            <input type="text" name="name" class="form-control" placeholder="Name" aria-label="Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email Address" aria-label="Email Address" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control no-stepper" placeholder="Postcode" aria-label="Postcode" required>
+                           <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <select class="form-control" aria-label="Deployment Type" required>
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="postcode" class="form-control no-stepper" placeholder="Postcode" aria-label="Postcode" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                           <select name="deployment_type" class="form-control" aria-label="Deployment Type" required>
                                 <option value="" disabled selected hidden>Deployment Type...</option>
                                 <option value="personal">Personal Device Setup</option>
                                 <option value="corporate">Corporate Fleet Deployment</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control no-stepper" min="1" placeholder="Estimated Device Count" aria-label="Estimated Device Count" required>
+                      <input type="number" name="device_count" class="form-control no-stepper" min="1" placeholder="Estimated Device Count" aria-labels="Estimated Device Count" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Project Details / Hardware Requirements" aria-label="Project Details" required></textarea>
+                        <textarea name="project_details" class="form-control" placeholder="Project Details / Hardware Requirements" aria-label="Project Details" required></textarea>
                     </div>
                     
                     <button type="submit" class="form-submit-btn">Send Message</button>
                 </form>
             </div>
-            <div style="width:100%; text-align:center; padding:20px; font-size:0.75vw; color:#6b7280; background:transparent;">
+            <div style="width:100%; text-align:center; padding:20px; font-size:0.75vw; color:#6b7280; background:transparent;">a
     The source code for this website can be found on 
     <a href="https://github.com/BootableUSB/Subdomain-Second" target="_blank" style="color:#a855f7; text-decoration:underline;">
         GitHub
