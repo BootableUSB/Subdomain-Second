@@ -467,6 +467,7 @@
             .info-item h3 {
                 font-size: 18px;
             }
+            
             .info-item p {
                 font-size: 15px;
             }
@@ -507,7 +508,13 @@
         .hero {
     color: #000000;
 }
+.punct {
+    color: #a855f7;
+}
 
+.purple {
+    color: #a855f7;
+}
     </style>
 </head>
 <body>
@@ -516,7 +523,7 @@
     <div class="scroll-container">
         
         <section class="section hero">
-            <h1>Your Computer,<br>Your Distro.</h1>
+            <h1>Your Computer<span class="punct">,</span><br>Your Distro<span class="punct">.</span></h1>
 
             <button onclick="document.getElementById('content-destination').scrollIntoView({ behavior: 'smooth' });" class="uiverse-btn" style="margin-top: auto;">
                 Explore
@@ -695,7 +702,7 @@
 
         <section id="contact-destination" class="section form-section">
             <div class="form-container">
-                <h2>Get a Free Quote</h2>
+               <h2>Get a Free <span class="purple">Quote</span></h2>
                 <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message received!');">
                     
                     <div class="form-row">
