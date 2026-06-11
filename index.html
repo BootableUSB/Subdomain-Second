@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preload" as="image" href="https://i.postimg.cc/RFMYFKLT/white-abstract-background-23-2148804712.avif">
     <meta name="google-site-verification" content="iPNi6d5UKueCOjdgMEYUd4VY650VPXIbf2weYd6t6Z0" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,31 +40,6 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- THEME TOGGLE BUTTON --- */
-        .theme-toggle {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            z-index: 1000;
-            background: var(--bg-color);
-            border: 2px solid var(--text-color);
-            color: var(--text-color);
-            padding: 10px 20px;
-            border-radius: 9999px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            background: var(--text-color);
-            color: var(--bg-color);
-        }
 
         /* Snap Scrolling Container */
         .scroll-container {
@@ -108,6 +84,22 @@
             margin-bottom: auto;
         }
 
+		.hero {
+    		justify-content: space-between;
+    		padding: 10vh 5vw 8vh 5vw;
+    		text-align: center;
+		
+    		/* NEW BACKGROUND */
+    		background-image: url("https://i.postimg.cc/RFMYFKLT/white-abstract-background-23-2148804712.avif");
+    		background-size: cover;
+    		background-position: center;
+    		background-repeat: no-repeat;
+		
+    		/* makes text readable */
+    		position: relative;
+    		color: black;
+		}
+		
         /* MASSIVE BUTTONS */
         .uiverse-btn {
             display: flex;
@@ -508,19 +500,23 @@
                 border-radius: 24px;
                 height: auto;
             }
+			.hero {
+    			color:  #000000 !important;
+			}            
         }
+        .hero {
+    color: #000000;
+}
+
     </style>
 </head>
 <body>
 
-    <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
-        <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
-    </button>
 
     <div class="scroll-container">
         
         <section class="section hero">
-            <h1>Any Computer.<br>Any Distro.</h1>
+            <h1>Your Computer,<br>Your Distro.</h1>
 
             <button onclick="document.getElementById('content-destination').scrollIntoView({ behavior: 'smooth' });" class="uiverse-btn" style="margin-top: auto;">
                 Explore
@@ -537,51 +533,51 @@
                     
                     <div class="slide-pair">
                         <div class="panel-box">
-                            <h2>Personal Laptops</h2>
-                            <div class="panel-tagline">Premium OS Conversions & Optimizations</div>
-                            <p>Breathe brand new lifecycle value directly into your daily personal hardware layout. We replace resource-heavy operating systems with lightweight, secure Linux structures calibrated flawlessly to matching your workflow configurations.</p>
+                            <h2>What do we actually do</h2>
+                            <div class="panel-tagline">Linux Installation & Optimisation Service</div>
+                            <p>We install and configure Linux systems on personal computers, business devices, and servers. Our focus is removing unnecessary bloat, improving performance, and tailoring each setup to how you actually use your machine.</p>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <h3>Dual Booting</h3>
-                                    <p>Full support setups for secure native dual-boot partitions.</p>
+                                    <h3>System Installationg</h3>
+                                    <p>Clean installation of Linux distributions suited to your hardware.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Driver Tuning</h3>
-                                    <p>Complete driver optimization blueprints for complex hardware components.</p>
+                                    <h3>Performance Setup</h3>
+                                    <p>Optimisation of speed, boot time, and overall system responsiveness.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Custom Pipelines</h3>
-                                    <p>Tailored configurations matching modern software development trends.</p>
+                                    <h3>Driver Support</h3>
+                                    <p>Hardware compatibility setup including WiFi, GPU, and peripherals.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Privacy Hardened</h3>
-                                    <p>Eliminate corporate telemetry tracking at the kernel layer.</p>
+                                    <h3>Custom Configuration</h3>
+                                    <p>System tuned specifically for your workflow and usage needs.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="panel-box">
-                            <h2>Corporate Fleets</h2>
-                            <div class="panel-tagline">Mass Scale Bare-Metal Imaging</div>
+                            <h2>Who is this for</h2>
+                            <div class="panel-tagline">Built for Anyone Wanting Better Performance</div>
                             <p>Orchestrate scalable enterprise systems across your whole organizational layout without dealing with software subscription walls. Our mass bare-metal imaging protocols quickly deploy locked-down desktop architectures built precisely around unique employee group requirements.</p>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <h3>Unified Rollouts</h3>
-                                    <p>Mass deployment image automation setups for unified device rollouts.</p>
+                                    <h3>Students</h3>
+                                    <p>Perfect for study, coding, and lightweight laptops that need speed.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Central Controls</h3>
-                                    <p>Centralized administration scripts for instant configuration updates.</p>
+                                    <h3>Developers</h3>
+                                    <p>Ideal for programming environments, tools, and workflows.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Ironclad Policies</h3>
-                                    <p>Hardened corporate firewall policies paired with strict disk data protection.</p>
+                                    <h3>Businesses</h3>
+                                    <p>Reduce licensing costs and improve fleet-wide performance.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Zero Overhead</h3>
-                                    <p>Ditch mandatory licensing cycles completely and save resource capitals.</p>
+                                    <h3>Everyday Users</h3>
+                                    <p>Anyone wanting a faster, cleaner, more private computer experience.</p>
                                 </div>
                             </div>
                         </div>
@@ -589,50 +585,50 @@
 
                     <div class="slide-pair">
                         <div class="panel-box">
-                            <h2>Server Deployments</h2>
-                            <div class="panel-tagline">Headless Core Infrastructure Setups</div>
-                            <p>Build unshakeable backend infrastructure utilizing the exact same open-source tools powering the world's largest supercomputers. We structure hardened, headless server environments optimized for maximum resource allocation and continuous uptime.</p>
+                            <h2>How it works</h2>
+                            <div class="panel-tagline">Simple Step-by-Step Process</div>
+                            <p>We make switching to Linux straightforward. First, we assess your device and needs. Then we install and configure the system. Finally, we optimise everything so it runs smoothly for your specific use case.</p>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <h3>Local Hosting</h3>
-                                    <p>Bare-metal server configurations for dedicated local hosting structures.</p>
+                                    <h3>Assessment</h3>
+                                    <p>We check your hardware and understand what you need the system for.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Virtualization</h3>
-                                    <p>Docker and Kubernetes virtualization setups built out for microservices.</p>
+                                    <h3>Installation</h3>
+                                    <p>Linux is installed cleanly or alongside your existing operating system</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>RAID Storage</h3>
-                                    <p>Advanced RAID array implementations ensuring reliable data redundancy cascades.</p>
+                                    <h3>Configuration</h3>
+                                    <p>Drivers, updates, and essential tools are set up properly.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Uptime Metrics</h3>
-                                    <p>Configure automated load balancing grids for peak traffic safety.</p>
+                                    <h3>Optimisation</h3>
+                                    <p>We fine-tune performance, speed, and usability for your workflow.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="panel-box">
-                            <h2>Ongoing Maintenance</h2>
-                            <div class="panel-tagline">Continuous Protection & Security Patching</div>
+                            <h2>Location</h2>
+                            <div class="panel-tagline">Melbourne, Victoria, Australia</div>
                             <p>Ensure your Linux environments remain cutting-edge and perfectly secure long after the initial deployment phase. We offer dedicated retention programs designed to keep your systems patched, clean, and functioning at peak efficiency.</p>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <h3>Kernel Updates</h3>
-                                    <p>Automated security patching and kernel update tracking scheduling protocols.</p>
+                                    <h3>Location</h3>
+                                    <p>Available Australia-wide for most installations and setups.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Thermal Audits</h3>
-                                    <p>Routine hardware health checks and continuous thermal monitoring.</p>
+                                    <h3>Remote Support</h3>
+                                    <p>Offered within Melbourne and surrounding areas when required.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Cloud Backups</h3>
-                                    <p>Encrypted cloud backup synchronization and data recovery validation tests.</p>
+                                    <h3>On-site Service</h3>
+                                    <p>Fast turnaround for both remote and local clients.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Log Analytics</h3>
+                                    <h3>Response Time</h3>
                                     <p>Proactive error monitoring and hardware diagnostic evaluations.</p>
                                 </div>
                             </div>
@@ -641,51 +637,51 @@
 
                     <div class="slide-pair">
                         <div class="panel-box">
-                            <h2>Cloud Integrations</h2>
-                            <div class="panel-tagline">Hybrid Computing Synchronization Loops</div>
-                            <p>Bridge your local operating arrays directly into highly scaled hybrid cloud systems securely. We manage provisioning pipelines designed around continuous synchronization loops, giving teams frictionless global access vectors.</p>
+                            <h2>Why Linux</h2>
+                            <div class="panel-tagline">Performance, Privacy & Control</div>
+                            <p>Linux gives you faster performance, stronger security, and full control over your system. It removes unnecessary background processes and lets your hardware run at its full potential.</p>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <h3>Identity Access</h3>
-                                    <p>Identity access blueprints utilizing secure encrypted access tokens.</p>
+                                    <h3>Faster Performance</h3>
+                                    <p>Uses fewer resources than traditional operating systems.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Scaling Grids</h3>
-                                    <p>Automated storage volume adjustments responding to live usage spikes.</p>
+                                    <h3>Better Privacy</h3>
+                                    <p>No forced telemetry or background data tracking.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Container Shifts</h3>
-                                    <p>Symmetric container migration setups across active server arrays.</p>
+                                    <h3>Full Control</h3>
+                                    <p>Complete customisation of your system and software.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Global Access</h3>
-                                    <p>Low-latency sync configurations built for worldwide operational teams.</p>
+                                    <h3>Free & Open Source</h3>
+                                    <p>No licensing costs and a global community supporting it.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="panel-box">
-                            <h2>Custom Kernel Tuning</h2>
-                            <div class="panel-tagline">Low Latency Process Compilations</div>
-                            <p>Strip unnecessary background processing subroutines directly out of your runtime environment. We compile tailored execution kernels built exclusively around your hardware properties for low latency computing limits.</p>
+                            <h2>Pricing & Packages</h2>
+                            <div class="panel-tagline">Simple, Transparent Costs</div>
+                            <p>We offer straightforward pricing based on the type of setup you need. Whether it’s a single device or a full business rollout, everything is clearly priced with no hidden fees.</p>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <h3>Bloat Removal</h3>
-                                    <p>Elimination of bloatware frameworks to free active RAM hardware modules.</p>
+                                    <h3>One-Time Setup</h3>
+                                    <p>Flat-rate installation and configuration for personal devices.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Priority Routing</h3>
-                                    <p>Custom instruction schedules prioritizing production workflow execution threads.</p>
+                                    <h3>Business Plans</h3>
+                                    <p>Scaled pricing for multiple devices and corporate deployments.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Real-Time Modules</h3>
-                                    <p>Advanced real-time scheduling modules engineered for multimedia production.</p>
+                                    <h3>Optional Support</h3>
+                                    <p>Ongoing maintenance and updates available if needed.</p>
                                 </div>
                                 <div class="info-item">
-                                    <h3>Thermal Scaling</h3>
-                                    <p>Customized power Governor adjustments matching local cooling caps.</p>
+                                    <h3>No Hidden Fees</h3>
+                                    <p>Clear pricing upfront before any work begins.</p>
                                 </div>
                             </div>
                         </div>
@@ -740,28 +736,19 @@
                     <button type="submit" class="form-submit-btn">Send Message</button>
                 </form>
             </div>
+            <div style="width:100%; text-align:center; padding:20px; font-size:0.75vw; color:#6b7280; background:transparent;">
+    The source for this site can be found on 
+    <a href="https://github.com/BootableUSB/Subdomain-Second" target="_blank" style="color:#a855f7; text-decoration:underline;">
+        GitHub
+    </a>
+</div>
         </section>
 
     </div>
+    
 
     <script>
-        // --- THEME SWITCHER LOGIC ---
-        const themeToggleBtn = document.getElementById('theme-toggle-btn');
-        const themeIcon = document.getElementById('theme-icon');
-        const themeText = document.getElementById('theme-text');
-
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'Dark Mode';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Light Mode';
-            }
-        });
+    
 
         // --- SLIDER MECHANICS ---
         const sliderWrapper = document.getElementById('slider-wrapper');
@@ -889,5 +876,6 @@
 
         updateButtons(0);
     </script>
+
 </body>
 </html>
